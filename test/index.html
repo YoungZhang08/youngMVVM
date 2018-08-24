@@ -8,10 +8,35 @@
 </head>
 <body>
     <div id="app">
-        <input type="text" v-model="text">
-        {{ text }}
+        <div y-text="info.name">Name：{{info.name}}</div>
+        <div y-text="info.age">Age: {{info.age}}</div>
+        <input type="text" y-model="info.name">
+        <button y-on:click = "change">change</button>
+        <br>
+        {{name}} 
     </div>
 
     <script src="../src/index.js"></script>
+    <script>        
+        var yue = new Yue({
+            el: '#app',
+            data: {
+                name: 'Youngzhang',
+                info: {
+                    age: 21,
+                    name: 'Youngzhang',
+                },
+                rand: ['I', 'Love', 'U'],
+            },
+            methods: {
+                change: function() {
+                    let self = this;
+                    let index = Math.floor(Math.random() * self.rand.length);
+                    this.name = this.rand[index];
+                    this.info.name = 'ILoveU';
+                }
+            }
+        });
+    </script>
 </body>
 </html>
